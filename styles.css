@@ -1,1 +1,95 @@
+/* Paleta de colores naranjas */
+:root {
+  --primary-orange: #ff6b35;
+  --secondary-orange: #ff8c42;
+  --light-orange: #ffb347;
+  --dark-orange: #e64a19;
+  --accent-orange: #ff9f68;
+}
 
+/* Sobrescritura de colores azules de Tailwind a naranjas */
+.bg-blue-500 {
+  background-color: var(--primary-orange) !important;
+}
+
+.bg-blue-600 {
+  background-color: var(--dark-orange) !important;
+}
+
+.bg-blue-400 {
+  background-color: var(--secondary-orange) !important;
+}
+
+.bg-blue-300 {
+  background-color: var(--light-orange) !important;
+}
+
+.text-blue-500 {
+  color: var(--primary-orange) !important;
+}
+
+.text-blue-600 {
+  color: var(--dark-orange) !important;
+}
+
+.text-blue-400 {
+  color: var(--secondary-orange) !important;
+}
+
+.border-blue-500 {
+  border-color: var(--primary-orange) !important;
+}
+
+.border-blue-600 {
+  border-color: var(--dark-orange) !important;
+}
+
+.hover\:bg-blue-600:hover {
+  background-color: var(--dark-orange) !important;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: #d84315 !important;
+}
+
+.hover\:text-blue-500:hover {
+  color: var(--primary-orange) !important;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-color: var(--primary-orange) !important;
+}
+
+.focus\:border-blue-500:focus {
+  border-color: var(--primary-orange) !important;
+}
+
+/* Clases personalizadas con tonos naranjas */
+.bg-primary {
+  background-color: var(--primary-orange);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-orange);
+}
+
+.text-primary {
+  color: var(--primary-orange);
+}
+
+.text-secondary {
+  color: var(--secondary-orange);
+}
+
+.border-primary {
+  border-color: var(--primary-orange);
+}
+
+.btn-primary {
+  background-color: var(--primary-orange);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-orange);
+}
