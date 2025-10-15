@@ -1,1 +1,78 @@
+/* Colores corporativos - Actualizado a tonalidades amarillas */
+:root {
+  --primary-color: #FFD700;
+  --primary-dark: #FFA500;
+  --primary-light: #FFEB3B;
+  --accent-color: #FFC107;
+  --text-on-primary: #333333;
+}
 
+/* Logo */
+.logo {
+  color: var(--primary-color);
+}
+
+.logo-background {
+  background-color: var(--primary-color);
+}
+
+/* Botones */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--accent-color);
+  color: var(--text-on-primary);
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+}
+
+/* Fondos */
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-secondary {
+  background-color: var(--primary-light);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+/* Textos */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--primary-dark);
+}
+
+/* Enlaces */
+a {
+  color: var(--primary-dark);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* Bordes y decoraciones */
+.border-primary {
+  border-color: var(--primary-color);
+}
+
+.border-accent {
+  border-color: var(--accent-color);
+}
