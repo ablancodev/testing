@@ -1,1 +1,14 @@
+/* Estilos personalizados para el hero con tonos amarillos */
+.hero {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde047 50%, #facc15 100%);
+}
 
+/* Variante alternativa con degradado más suave */
+.hero-alt {
+  background: linear-gradient(to bottom, #fef9e7, #fde68a);
+}
+
+/* Clase adicional para overlay amarillo */
+.hero-yellow-overlay {
+  background-color: rgba(254, 240, 138, 0.9);
+}
