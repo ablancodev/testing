@@ -1,0 +1,46 @@
+/* Esquema de colores: Fondo azul con elementos destacados anaranjados */
+
+body {
+  background-color: #1e3a8a;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #fb923c;
+}
+
+button, .btn {
+  background-color: #f97316;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button:hover, .btn:hover {
+  background-color: #ea580c;
+}
+
+a {
+  color: #fb923c;
+}
+
+a:hover {
+  color: #fdba74;
+}
+
+header {
+  background-color: #1e40af;
+  padding: 20px;
+}
+
+footer {
+  background-color: #1e40af;
+  padding: 20px;
+  text-align: center;
+}
