@@ -1,1 +1,103 @@
+/* Paleta de colores amarillos */
+:root {
+  --primary-yellow: #FFC107;
+  --primary-yellow-dark: #FFA000;
+  --primary-yellow-light: #FFECB3;
+  --secondary-yellow: #FFD54F;
+  --accent-yellow: #FFEB3B;
+}
 
+/* Sobrescritura de clases Tailwind de azul a amarillo */
+
+/* Backgrounds azules -> amarillos */
+.bg-blue-50 { background-color: #FFFDE7 !important; }
+.bg-blue-100 { background-color: #FFF9C4 !important; }
+.bg-blue-200 { background-color: #FFF59D !important; }
+.bg-blue-300 { background-color: #FFF176 !important; }
+.bg-blue-400 { background-color: #FFEE58 !important; }
+.bg-blue-500 { background-color: #FFEB3B !important; }
+.bg-blue-600 { background-color: #FDD835 !important; }
+.bg-blue-700 { background-color: #FBC02D !important; }
+.bg-blue-800 { background-color: #F9A825 !important; }
+.bg-blue-900 { background-color: #F57F17 !important; }
+
+/* Textos azules -> amarillos */
+.text-blue-50 { color: #FFFDE7 !important; }
+.text-blue-100 { color: #FFF9C4 !important; }
+.text-blue-200 { color: #FFF59D !important; }
+.text-blue-300 { color: #FFF176 !important; }
+.text-blue-400 { color: #FFEE58 !important; }
+.text-blue-500 { color: #FFEB3B !important; }
+.text-blue-600 { color: #FDD835 !important; }
+.text-blue-700 { color: #FBC02D !important; }
+.text-blue-800 { color: #F9A825 !important; }
+.text-blue-900 { color: #F57F17 !important; }
+
+/* Bordes azules -> amarillos */
+.border-blue-50 { border-color: #FFFDE7 !important; }
+.border-blue-100 { border-color: #FFF9C4 !important; }
+.border-blue-200 { border-color: #FFF59D !important; }
+.border-blue-300 { border-color: #FFF176 !important; }
+.border-blue-400 { border-color: #FFEE58 !important; }
+.border-blue-500 { border-color: #FFEB3B !important; }
+.border-blue-600 { border-color: #FDD835 !important; }
+.border-blue-700 { border-color: #FBC02D !important; }
+.border-blue-800 { border-color: #F9A825 !important; }
+.border-blue-900 { border-color: #F57F17 !important; }
+
+/* Hover states */
+.hover\:bg-blue-50:hover { background-color: #FFFDE7 !important; }
+.hover\:bg-blue-100:hover { background-color: #FFF9C4 !important; }
+.hover\:bg-blue-200:hover { background-color: #FFF59D !important; }
+.hover\:bg-blue-300:hover { background-color: #FFF176 !important; }
+.hover\:bg-blue-400:hover { background-color: #FFEE58 !important; }
+.hover\:bg-blue-500:hover { background-color: #FFEB3B !important; }
+.hover\:bg-blue-600:hover { background-color: #FDD835 !important; }
+.hover\:bg-blue-700:hover { background-color: #FBC02D !important; }
+.hover\:bg-blue-800:hover { background-color: #F9A825 !important; }
+.hover\:bg-blue-900:hover { background-color: #F57F17 !important; }
+
+.hover\:text-blue-50:hover { color: #FFFDE7 !important; }
+.hover\:text-blue-100:hover { color: #FFF9C4 !important; }
+.hover\:text-blue-200:hover { color: #FFF59D !important; }
+.hover\:text-blue-300:hover { color: #FFF176 !important; }
+.hover\:text-blue-400:hover { color: #FFEE58 !important; }
+.hover\:text-blue-500:hover { color: #FFEB3B !important; }
+.hover\:text-blue-600:hover { color: #FDD835 !important; }
+.hover\:text-blue-700:hover { color: #FBC02D !important; }
+.hover\:text-blue-800:hover { color: #F9A825 !important; }
+.hover\:text-blue-900:hover { color: #F57F17 !important; }
+
+/* Focus states */
+.focus\:border-blue-500:focus { border-color: #FFEB3B !important; }
+.focus\:ring-blue-500:focus { --tw-ring-color: #FFEB3B !important; }
+
+/* Ring colors */
+.ring-blue-50 { --tw-ring-color: #FFFDE7 !important; }
+.ring-blue-100 { --tw-ring-color: #FFF9C4 !important; }
+.ring-blue-200 { --tw-ring-color: #FFF59D !important; }
+.ring-blue-300 { --tw-ring-color: #FFF176 !important; }
+.ring-blue-400 { --tw-ring-color: #FFEE58 !important; }
+.ring-blue-500 { --tw-ring-color: #FFEB3B !important; }
+.ring-blue-600 { --tw-ring-color: #FDD835 !important; }
+.ring-blue-700 { --tw-ring-color: #FBC02D !important; }
+.ring-blue-800 { --tw-ring-color: #F9A825 !important; }
+.ring-blue-900 { --tw-ring-color: #F57F17 !important; }
+
+/* Accesibilidad: asegurar contraste adecuado */
+.text-blue-500,
+.text-blue-600,
+.text-blue-700,
+.text-blue-800,
+.text-blue-900 {
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Para fondos amarillos claros, usar texto oscuro */
+.bg-blue-50,
+.bg-blue-100,
+.bg-blue-200,
+.bg-blue-300,
+.bg-blue-400 {
+  color: #333333;
+}
