@@ -1,42 +1,66 @@
-# Academia ProFormación - Sitio Web
+# Hero Component - Rosa Chicle
 
-Sitio web de una escuela de formación profesional construido con Tailwind CSS.
+## Descripción
+
+Componente Hero diseñado con tonos rosa chicle atractivos para la página principal.
 
 ## Características
 
-- 🎨 Diseño moderno y responsive con Tailwind CSS
-- 📱 Compatible con dispositivos móviles
-- 🎓 Secciones completas: Hero, Cursos, Testimonios, Contacto
-- ⚡ Animaciones suaves y transiciones
-- 🌐 Navegación con scroll suave
-- 📧 Formulario de contacto
-- 🔝 Botón de scroll hacia arriba
+- ✨ Diseño moderno con gradientes rosa chicle
+- 🎨 Animaciones suaves y atractivas
+- 📱 Totalmente responsive
+- ♿ Accesible (ARIA roles)
+- 🧪 Tests unitarios incluidos
+- 🎯 Alto contraste para mejor legibilidad
 
-## Tecnologías
+## Paleta de Colores
 
-- HTML5
-- Tailwind CSS (CDN)
-- Font Awesome Icons
-- JavaScript Vanilla
+- **Rosa Chicle Claro**: `#FFB3D9`
+- **Rosa Chicle**: `#FF69B4`
+- **Rosa Chicle Oscuro**: `#FF1493`
+- **Rosa Chicle Más Oscuro**: `#C71585`
+- **Texto de Contraste**: `#1a1a2e`
+- **Texto Claro**: `#ffffff`
 
-## Cómo Ver el Sitio
+## Uso
 
-Simplemente abre el archivo `index.html` en tu navegador web favorito.
+jsx
+import Hero from './components/Hero';
 
-## Estructura
+function App() {
+  return (
+    <div className="App">
+      <Hero />
+    </div>
+  );
+}
 
-- **Hero Section**: Presentación principal con llamadas a la acción
-- **Features**: Beneficios de la academia
-- **Courses**: Cursos destacados con detalles
-- **About**: Información sobre la academia
-- **Testimonials**: Opiniones de estudiantes
-- **Contact**: Formulario y datos de contacto
-- **Footer**: Enlaces y newsletter
+
+## Instalación
+
+bash
+npm install
+
+
+## Tests
+
+bash
+npm test
+
+
+## Estructura del Componente
+
+- `Hero.jsx` - Componente principal
+- `Hero.css` - Estilos y animaciones
+- `Hero.test.jsx` - Tests unitarios
 
 ## Personalización
 
-Puedes personalizar fácilmente:
-- Colores editando las clases de Tailwind
-- Contenido del texto en español
-- Imágenes e iconos
-- Enlaces de navegación
+Puedes personalizar los colores modificando las variables CSS en `Hero.css`:
+
+css
+:root {
+  --pink-bubblegum-light: #FFB3D9;
+  --pink-bubblegum: #FF69B4;
+  /* ... más variables */
+}
