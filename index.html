@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Formación Profesional - Tu Futuro Comienza Aquí</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Fallback styles in case CDN is blocked */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-graduation-cap text-3xl text-blue-600 mr-2"></i>
+                        <span class="text-2xl font-bold text-gray-800">Academia ProFormación</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-blue-600 transition">Inicio</a>
+                    <a href="#cursos" class="text-gray-700 hover:text-blue-600 transition">Cursos</a>
+                    <a href="#nosotros" class="text-gray-700 hover:text-blue-600 transition">Nosotros</a>
+                    <a href="#testimonios" class="text-gray-700 hover:text-blue-600 transition">Testimonios</a>
+                    <a href="#contacto" class="text-gray-700 hover:text-blue-600 transition">Contacto</a>
+                    <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Inscríbete</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-24 pb-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">Transforma Tu Carrera Profesional</h1>
+                    <p class="text-xl mb-8 text-blue-100">Aprende las habilidades más demandadas del mercado con nuestros cursos especializados y profesores expertos.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#cursos" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition text-center">
+                            Explorar Cursos
+                        </a>
+                        <a href="#contacto" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition text-center">
+                            Solicitar Información
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white/20 p-6 rounded-lg text-center">
+                                <i class="fas fa-users text-4xl mb-2"></i>
+                                <h3 class="text-3xl font-bold">10,000+</h3>
+                                <p>Estudiantes</p>
+                            </div>
+                            <div class="bg-white/20 p-6 rounded-lg text-center">
+                                <i class="fas fa-book text-4xl mb-2"></i>
+                                <h3 class="text-3xl font-bold">50+</h3>
+                                <p>Cursos</p>
+                            </div>
+                            <div class="bg-white/20 p-6 rounded-lg text-center">
+                                <i class="fas fa-award text-4xl mb-2"></i>
+                                <h3 class="text-3xl font-bold">95%</h3>
+                                <p>Satisfacción</p>
+                            </div>
+                            <div class="bg-white/20 p-6 rounded-lg text-center">
+                                <i class="fas fa-briefcase text-4xl mb-2"></i>
+                                <h3 class="text-3xl font-bold">80%</h3>
+                                <p>Empleo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">¿Por Qué Elegirnos?</h2>
+                <p class="text-xl text-gray-600">Ofrecemos una experiencia de aprendizaje única y de calidad</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chalkboard-teacher text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Profesores Expertos</h3>
+                    <p class="text-gray-600">Aprende de profesionales con años de experiencia en la industria y certificaciones internacionales.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop-code text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Aprendizaje Práctico</h3>
+                    <p class="text-gray-600">Proyectos reales y casos prácticos para que apliques lo aprendido desde el primer día.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-certificate text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Certificación Oficial</h3>
+                    <p class="text-gray-600">Obtén certificados reconocidos por la industria que impulsen tu carrera profesional.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-clock text-2xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Horarios Flexibles</h3>
+                    <p class="text-gray-600">Estudia a tu ritmo con clases en vivo y grabadas disponibles 24/7.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-users-cog text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Soporte Continuo</h3>
+                    <p class="text-gray-600">Acompañamiento personalizado durante todo tu proceso de aprendizaje.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Bolsa de Empleo</h3>
+                    <p class="text-gray-600">Conectamos a nuestros estudiantes con las mejores oportunidades laborales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="cursos" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Nuestros Cursos Destacados</h2>
+                <p class="text-xl text-gray-600">Programas diseñados para impulsar tu carrera profesional</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-code text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="bg-blue-100 text-blue-600 text-sm px-3 py-1 rounded-full">Programación</span>
+                            <span class="text-yellow-500">★★★★★</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Desarrollo Web Full Stack</h3>
+                        <p class="text-gray-600 mb-4">Aprende a crear aplicaciones web completas con las tecnologías más demandadas: HTML, CSS, JavaScript, React, Node.js y bases de datos.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-gray-600"><i class="far fa-clock"></i> 6 meses</span>
+                            <span class="text-gray-600"><i class="fas fa-signal"></i> Intermedio</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-blue-600">$499</span>
+                            <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Inscribirse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full">Marketing</span>
+                            <span class="text-yellow-500">★★★★★</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Marketing Digital Avanzado</h3>
+                        <p class="text-gray-600 mb-4">Domina estrategias de SEO, SEM, redes sociales, email marketing y analítica web para impulsar negocios online.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-gray-600"><i class="far fa-clock"></i> 4 meses</span>
+                            <span class="text-gray-600"><i class="fas fa-signal"></i> Todos los niveles</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-green-600">$399</span>
+                            <a href="#" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">Inscribirse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-paint-brush text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="bg-purple-100 text-purple-600 text-sm px-3 py-1 rounded-full">Diseño</span>
+                            <span class="text-yellow-500">★★★★★</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Diseño UX/UI Profesional</h3>
+                        <p class="text-gray-600 mb-4">Crea experiencias digitales excepcionales con Figma, Adobe XD y aprende metodologías de diseño centrado en el usuario.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-gray-600"><i class="far fa-clock"></i> 5 meses</span>
+                            <span class="text-gray-600"><i class="fas fa-signal"></i> Principiante</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-purple-600">$449</span>
+                            <a href="#" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition">Inscribirse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-gray-800 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-900 transition">
+                    Ver Todos los Cursos <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">Sobre Academia ProFormación</h2>
+                    <p class="text-lg text-gray-600 mb-6">Somos una institución líder en formación profesional con más de 10 años de experiencia. Nuestra misión es proporcionar educación de calidad accesible para todos.</p>
+                    <p class="text-lg text-gray-600 mb-6">Hemos formado a miles de profesionales que hoy trabajan en las mejores empresas del sector. Nuestro enfoque práctico y personalizado garantiza que cada estudiante alcance sus objetivos.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                            <span class="text-gray-700">Certificación oficial</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                            <span class="text-gray-700">Profesores expertos</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                            <span class="text-gray-700">Contenido actualizado</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                            <span class="text-gray-700">Soporte 24/7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-eye text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Nuestra Visión</h3>
+                                <p class="text-gray-600">Ser la academia de referencia en formación profesional, reconocida por la excelencia educativa y el éxito de nuestros egresados.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-bullseye text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Nuestra Misión</h3>
+                                <p class="text-gray-600">Proporcionar formación de calidad que transforme vidas y carreras, conectando talento con oportunidades.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-heart text-purple-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Nuestros Valores</h3>
+                                <p class="text-gray-600">Excelencia, innovación, compromiso con el estudiante y responsabilidad social guían cada una de nuestras acciones.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Lo Que Dicen Nuestros Estudiantes</h2>
+                <p class="text-xl text-gray-600">Miles de profesionales han transformado sus carreras con nosotros</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">María González</h4>
+                            <p class="text-sm text-gray-600">Desarrolladora Web</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600">"Gracias a Academia ProFormación conseguí mi primer trabajo como desarrolladora. Los profesores son excelentes y el contenido muy práctico. ¡100% recomendado!"</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                            J
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Juan Rodríguez</h4>
+                            <p class="text-sm text-gray-600">Marketing Digital</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600">"El curso de Marketing Digital superó mis expectativas. Aprendí estrategias que aplico diariamente en mi trabajo. La inversión valió totalmente la pena."</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                            L
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Laura Martínez</h4>
+                            <p class="text-sm text-gray-600">Diseñadora UX/UI</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-4">★★★★★</div>
+                    <p class="text-gray-600">"Cambié completamente de carrera gracias a este curso. El soporte personalizado y los proyectos reales me dieron la confianza que necesitaba."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-6">¿Listo Para Comenzar Tu Transformación?</h2>
+            <p class="text-xl mb-8 text-blue-100">Únete a miles de estudiantes que ya están construyendo su futuro</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#cursos" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition">
+                    Ver Cursos Disponibles
+                </a>
+                <a href="#contacto" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition">
+                    Solicitar Asesoría Gratis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">Contáctanos</h2>
+                    <p class="text-lg text-gray-600 mb-8">¿Tienes preguntas? Estamos aquí para ayudarte. Completa el formulario y nos pondremos en contacto contigo lo antes posible.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Dirección</h4>
+                                <p class="text-gray-600">Calle Principal 123, Madrid, España</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Teléfono</h4>
+                                <p class="text-gray-600">+34 900 123 456</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">info@academiaproformacion.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Horario</h4>
+                                <p class="text-gray-600">Lunes a Viernes: 9:00 - 20:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <form>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Nombre Completo</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Tu nombre">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="tu@email.com">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Teléfono</label>
+                            <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="+34 600 000 000">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Curso de Interés</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                                <option>Selecciona un curso</option>
+                                <option>Desarrollo Web Full Stack</option>
+                                <option>Marketing Digital Avanzado</option>
+                                <option>Diseño UX/UI Profesional</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Mensaje</label>
+                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap text-2xl text-blue-400 mr-2"></i>
+                        <span class="text-xl font-bold">Academia ProFormación</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Transformando vidas a través de la educación de calidad.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-400 hover:text-blue-400 transition">Inicio</a></li>
+                        <li><a href="#cursos" class="text-gray-400 hover:text-blue-400 transition">Cursos</a></li>
+                        <li><a href="#nosotros" class="text-gray-400 hover:text-blue-400 transition">Nosotros</a></li>
+                        <li><a href="#testimonios" class="text-gray-400 hover:text-blue-400 transition">Testimonios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Cursos Populares</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Desarrollo Web</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Marketing Digital</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Diseño UX/UI</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Ver todos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Suscríbete para recibir novedades y ofertas especiales.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Tu email" class="flex-1 px-4 py-2 rounded-l-lg bg-gray-800 text-white focus:outline-none">
+                        <button type="submit" class="bg-blue-600 px-6 py-2 rounded-r-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Academia ProFormación. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-blue-700 transition hidden" id="scrollTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Show scroll to top button when scrolling
+        window.addEventListener('scroll', function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
