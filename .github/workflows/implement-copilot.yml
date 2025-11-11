@@ -2,11 +2,14 @@ name: Auto create branch and PR for implement issues
 
 on:
   issues:
-    types: [labeled]
+    types:
+      - opened    # al crear un issue
+      - labeled   # al agregar un label
 
 jobs:
   create-branch-and-pr:
-    if: github.event.label.name == 'implement'
+    # Solo corre si el issue tiene el label "implement"
+    if: contains(github.event.issue.labels.*.name, 'implement')
     runs-on: ubuntu-latest
 
     permissions:
