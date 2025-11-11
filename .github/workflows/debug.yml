@@ -9,8 +9,10 @@ jobs:
     permissions:
       issues: write
       contents: read
+      repository-projects: read  # Añadido
+      metadata: read             # Añadido
     steps:
-      - name: Debug - List available assignees
+      - name: Check Copilot availability with REST API
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -18,31 +20,34 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             
-            // Ver todos los actores sugeridos
-            const copilotQuery = `
-              query {
-                repository(owner: "${owner}", name: "${repo}") {
-                  suggestedActors(capabilities: [CAN_BE_ASSIGNED], first: 100) {
-                    nodes {
-                      login
-                      __typename
-                      ... on Bot {
-                        id
-                      }
-                      ... on User {
-                        id
-                      }
-                    }
-                  }
-                }
+            // Intentar obtener assignees disponibles mediante REST API
+            try {
+              const { data: assignees } = await github.rest.issues.listAssignees({
+                owner,
+                repo,
+                per_page: 100
+              });
+              
+              core.info('Available assignees via REST:');
+              assignees.forEach(assignee => {
+                core.info(`- ${assignee.login} (type: ${assignee.type})`);
+              });
+              
+              // Buscar Copilot
+              const copilot = assignees.find(a => 
+                a.login.toLowerCase().includes('copilot')
+              );
+              
+              if (copilot) {
+                core.info(`Found Copilot: ${copilot.login}`);
+              } else {
+                core.info('Copilot not found in assignees list');
               }
-            `;
+            } catch (error) {
+              core.error(`Error: ${error.message}`);
+            }
             
-            const result = await github.graphql(copilotQuery);
-            core.info('Available assignees:');
-            core.info(JSON.stringify(result.repository.suggestedActors.nodes, null, 2));
-            
-      - name: Assign issue to Copilot
+      - name: Try direct assignment via REST API
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -51,75 +56,26 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             
-            // Obtener el ID del issue
-            const issueQuery = `
-              query {
-                repository(owner: "${owner}", name: "${repo}") {
-                  issue(number: ${issueNumber}) {
-                    id
-                  }
+            try {
+              // Intentar asignar directamente con diferentes nombres
+              const possibleNames = ['copilot', 'copilot-swe-agent', 'Copilot'];
+              
+              for (const name of possibleNames) {
+                try {
+                  await github.rest.issues.addAssignees({
+                    owner,
+                    repo,
+                    issue_number: issueNumber,
+                    assignees: [name]
+                  });
+                  core.info(`Successfully assigned to ${name}`);
+                  return;
+                } catch (e) {
+                  core.info(`Failed to assign to ${name}: ${e.message}`);
                 }
               }
-            `;
-            
-            const issueResult = await github.graphql(issueQuery);
-            const issueId = issueResult.repository.issue.id;
-            
-            // Obtener el ID de Copilot (probamos varios nombres posibles)
-            const copilotQuery = `
-              query {
-                repository(owner: "${owner}", name: "${repo}") {
-                  suggestedActors(capabilities: [CAN_BE_ASSIGNED], first: 100) {
-                    nodes {
-                      login
-                      __typename
-                      ... on Bot {
-                        id
-                      }
-                    }
-                  }
-                }
-              }
-            `;
-            
-            const copilotResult = await github.graphql(copilotQuery);
-            
-            // Buscar entre varios nombres posibles
-            const possibleNames = ['copilot-swe-agent', 'copilot', 'github-copilot'];
-            let copilotBot = null;
-            
-            for (const name of possibleNames) {
-              copilotBot = copilotResult.repository.suggestedActors.nodes.find(
-                node => node.login === name
-              );
-              if (copilotBot) {
-                core.info(`Found Copilot as: ${name}`);
-                break;
-              }
+              
+              core.setFailed('Could not assign to any Copilot variant');
+            } catch (error) {
+              core.setFailed(`Error: ${error.message}`);
             }
-            
-            if (!copilotBot) {
-              core.setFailed('Copilot coding agent is not available in this repository');
-              core.info('Available bots:');
-              copilotResult.repository.suggestedActors.nodes.forEach(node => {
-                if (node.__typename === 'Bot') {
-                  core.info(`- ${node.login}`);
-                }
-              });
-              return;
-            }
-            
-            // Asignar el issue a Copilot
-            const assignMutation = `
-              mutation {
-                addAssigneesToAssignable(input: {
-                  assignableId: "${issueId}",
-                  assigneeIds: ["${copilotBot.id}"]
-                }) {
-                  clientMutationId
-                }
-              }
-            `;
-            
-            await github.graphql(assignMutation);
-            core.info(`Issue #${issueNumber} assigned to Copilot (${copilotBot.login}) successfully`);
