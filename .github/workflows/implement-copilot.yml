@@ -1,90 +1,24 @@
-name: Auto create branch and PR for implement issues
+name: Trigger Copilot Workspace for issues
 on:
   issues:
     types:
-      - opened    # al crear un issue
+      - opened
 jobs:
-  create-branch-and-pr:
+  trigger-copilot:
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # para crear rama y hacer commits
-      pull-requests: write   # para abrir PR
-      issues: read           # para leer la issue
+      issues: write
     steps:
-      - name: Checkout repository (full)
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Configure git user
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Get issue info
-        id: issue
-        run: |
-          echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
-          echo "ISSUE_TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
-          BODY=$(echo "${{ github.event.issue.body }}" | sed 's/"/\\"/g' | tr '\n' ' ')
-          echo "ISSUE_BODY=${BODY}" >> $GITHUB_ENV
-          SAFE_TITLE=$(echo "${{ github.event.issue.title }}" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-')
-          BRANCH_NAME="issue-${{ github.event.issue.number }}-$SAFE_TITLE"
-          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
-      - name: Create new branch from develop and commit placeholder
-        run: |
-          git fetch --all
-          # Intenta crear la rama desde origin/develop; si no existe, fallback a HEAD
-          if git ls-remote --exit-code --heads origin develop; then
-            git checkout -b "${{ env.BRANCH_NAME }}" origin/develop
-          else
-            git checkout -b "${{ env.BRANCH_NAME }}"
-          fi
-          echo "Auto branch for issue #${{ env.ISSUE_NUMBER }}" > ".github/ISSUE-${{ env.ISSUE_NUMBER }}.md"
-          git add ".github/ISSUE-${{ env.ISSUE_NUMBER }}.md"
-          git commit -m "chore: create branch for issue #${{ env.ISSUE_NUMBER }}" || echo "No changes to commit"
-          git push --set-upstream origin "${{ env.BRANCH_NAME }}"
-      - name: Debug list remote branches and latest commit
-        run: |
-          echo "Remote branches:"
-          git ls-remote --heads origin
-          echo "Local branches:"
-          git branch -vv
-          echo "Last commit on current branch:"
-          git log -1 --pretty=format:"%h %an %s"
-      - name: Create PR via GitHub API (avoid duplicates)
+      - name: Add Copilot Workspace label
         uses: actions/github-script@v6
-        env:
-          BRANCH_NAME: ${{ env.BRANCH_NAME }}
-          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
-          ISSUE_TITLE: ${{ env.ISSUE_TITLE }}
-          ISSUE_BODY: ${{ env.ISSUE_BODY }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const headBranch = process.env.BRANCH_NAME;
-            const base = 'develop';
-            // Comprobar si ya hay un PR abierto para este head -> base
-            const list = await github.rest.pulls.list({
-              owner,
-              repo,
-              head: `${owner}:${headBranch}`,
-              base,
-              state: 'open',
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['copilot']
             });
-            if (list.data.length > 0) {
-              core.info(`PR already exists: #${list.data[0].number} -> ${list.data[0].html_url}`);
-            } else {
-              const title = `Auto PR: Issue #${process.env.ISSUE_NUMBER} - ${process.env.ISSUE_TITLE}`;
-              const body = `This PR was automatically generated from issue #${process.env.ISSUE_NUMBER}.\n\n${process.env.ISSUE_BODY}\n\nLabel: \`implement\`\nPlease commit your implementation changes to branch \`${process.env.BRANCH_NAME}\`.`;
-              const pr = await github.rest.pulls.create({
-                owner,
-                repo,
-                title,
-                head: headBranch,
-                base,
-                body,
-                draft: true,
-              });
-              core.info(`PR created: #${pr.data.number} -> ${pr.data.html_url}`);
-            }
+            
+            core.info(`Label 'copilot' added to issue #${context.issue.number}`);
