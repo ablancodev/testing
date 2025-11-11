@@ -1,30 +1,24 @@
 name: Auto create branch and PR for implement issues
-
 on:
   issues:
     types:
       - opened    # al crear un issue
-
 jobs:
   create-branch-and-pr:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write        # para crear rama y hacer commits
       pull-requests: write   # para abrir PR
       issues: read           # para leer la issue
-
     steps:
       - name: Checkout repository (full)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Configure git user
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
       - name: Get issue info
         id: issue
         run: |
@@ -35,7 +29,6 @@ jobs:
           SAFE_TITLE=$(echo "${{ github.event.issue.title }}" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-')
           BRANCH_NAME="issue-${{ github.event.issue.number }}-$SAFE_TITLE"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
-
       - name: Create new branch from develop and commit placeholder
         run: |
           git fetch --all
@@ -49,7 +42,6 @@ jobs:
           git add ".github/ISSUE-${{ env.ISSUE_NUMBER }}.md"
           git commit -m "chore: create branch for issue #${{ env.ISSUE_NUMBER }}" || echo "No changes to commit"
           git push --set-upstream origin "${{ env.BRANCH_NAME }}"
-
       - name: Debug: list remote branches and latest commit
         run: |
           echo "Remote branches:"
@@ -58,7 +50,6 @@ jobs:
           git branch -vv
           echo "Last commit on current branch:"
           git log -1 --pretty=format:"%h %an %s"
-
       - name: Create PR via GitHub API (avoid duplicates)
         uses: actions/github-script@v6
         env:
@@ -73,7 +64,6 @@ jobs:
             const repo = context.repo.repo;
             const headBranch = process.env.BRANCH_NAME;
             const base = 'develop';
-
             // Comprobar si ya hay un PR abierto para este head -> base
             const list = await github.rest.pulls.list({
               owner,
@@ -82,7 +72,6 @@ jobs:
               base,
               state: 'open',
             });
-
             if (list.data.length > 0) {
               core.info(`PR already exists: #${list.data[0].number} -> ${list.data[0].html_url}`);
             } else {
