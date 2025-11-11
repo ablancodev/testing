@@ -1,24 +1,76 @@
-name: Trigger Copilot Workspace for issues
+name: Auto assign Copilot to new issues
 on:
   issues:
     types:
       - opened
 jobs:
-  trigger-copilot:
+  assign-copilot:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+      contents: read
     steps:
-      - name: Add Copilot Workspace label
-        uses: actions/github-script@v6
+      - name: Assign issue to Copilot
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.rest.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              labels: ['copilot']
-            });
+            const issueNumber = context.issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
             
-            core.info(`Label 'copilot' added to issue #${context.issue.number}`);
+            // Primero obtenemos el ID del issue
+            const issueQuery = `
+              query {
+                repository(owner: "${owner}", name: "${repo}") {
+                  issue(number: ${issueNumber}) {
+                    id
+                  }
+                }
+              }
+            `;
+            
+            const issueResult = await github.graphql(issueQuery);
+            const issueId = issueResult.repository.issue.id;
+            
+            // Luego obtenemos el ID de Copilot
+            const copilotQuery = `
+              query {
+                repository(owner: "${owner}", name: "${repo}") {
+                  suggestedActors(capabilities: [CAN_BE_ASSIGNED], first: 100) {
+                    nodes {
+                      login
+                      __typename
+                      ... on Bot {
+                        id
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+            
+            const copilotResult = await github.graphql(copilotQuery);
+            const copilotBot = copilotResult.repository.suggestedActors.nodes.find(
+              node => node.login === 'copilot-swe-agent'
+            );
+            
+            if (!copilotBot) {
+              core.setFailed('Copilot coding agent is not available in this repository');
+              return;
+            }
+            
+            // Finalmente asignamos el issue a Copilot
+            const assignMutation = `
+              mutation {
+                addAssigneesToAssignable(input: {
+                  assignableId: "${issueId}",
+                  assigneeIds: ["${copilotBot.id}"]
+                }) {
+                  clientMutationId
+                }
+              }
+            `;
+            
+            await github.graphql(assignMutation);
+            core.info(`Issue #${issueNumber} assigned to Copilot successfully`);
