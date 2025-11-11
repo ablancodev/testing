@@ -4,7 +4,6 @@ on:
   issues:
     types:
       - opened    # al crear un issue
-      - labeled   # al agregar un label
 
 jobs:
   create-branch-and-pr:
