@@ -42,7 +42,7 @@ jobs:
           git add ".github/ISSUE-${{ env.ISSUE_NUMBER }}.md"
           git commit -m "chore: create branch for issue #${{ env.ISSUE_NUMBER }}" || echo "No changes to commit"
           git push --set-upstream origin "${{ env.BRANCH_NAME }}"
-      - name: Debug: list remote branches and latest commit
+      - name: Debug list remote branches and latest commit
         run: |
           echo "Remote branches:"
           git ls-remote --heads origin
