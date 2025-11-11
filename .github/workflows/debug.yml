@@ -1,0 +1,125 @@
+name: Debug and assign Copilot to new issues
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  assign-copilot:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Debug - List available assignees
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            // Ver todos los actores sugeridos
+            const copilotQuery = `
+              query {
+                repository(owner: "${owner}", name: "${repo}") {
+                  suggestedActors(capabilities: [CAN_BE_ASSIGNED], first: 100) {
+                    nodes {
+                      login
+                      __typename
+                      ... on Bot {
+                        id
+                      }
+                      ... on User {
+                        id
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+            
+            const result = await github.graphql(copilotQuery);
+            core.info('Available assignees:');
+            core.info(JSON.stringify(result.repository.suggestedActors.nodes, null, 2));
+            
+      - name: Assign issue to Copilot
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueNumber = context.issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            // Obtener el ID del issue
+            const issueQuery = `
+              query {
+                repository(owner: "${owner}", name: "${repo}") {
+                  issue(number: ${issueNumber}) {
+                    id
+                  }
+                }
+              }
+            `;
+            
+            const issueResult = await github.graphql(issueQuery);
+            const issueId = issueResult.repository.issue.id;
+            
+            // Obtener el ID de Copilot (probamos varios nombres posibles)
+            const copilotQuery = `
+              query {
+                repository(owner: "${owner}", name: "${repo}") {
+                  suggestedActors(capabilities: [CAN_BE_ASSIGNED], first: 100) {
+                    nodes {
+                      login
+                      __typename
+                      ... on Bot {
+                        id
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+            
+            const copilotResult = await github.graphql(copilotQuery);
+            
+            // Buscar entre varios nombres posibles
+            const possibleNames = ['copilot-swe-agent', 'copilot', 'github-copilot'];
+            let copilotBot = null;
+            
+            for (const name of possibleNames) {
+              copilotBot = copilotResult.repository.suggestedActors.nodes.find(
+                node => node.login === name
+              );
+              if (copilotBot) {
+                core.info(`Found Copilot as: ${name}`);
+                break;
+              }
+            }
+            
+            if (!copilotBot) {
+              core.setFailed('Copilot coding agent is not available in this repository');
+              core.info('Available bots:');
+              copilotResult.repository.suggestedActors.nodes.forEach(node => {
+                if (node.__typename === 'Bot') {
+                  core.info(`- ${node.login}`);
+                }
+              });
+              return;
+            }
+            
+            // Asignar el issue a Copilot
+            const assignMutation = `
+              mutation {
+                addAssigneesToAssignable(input: {
+                  assignableId: "${issueId}",
+                  assigneeIds: ["${copilotBot.id}"]
+                }) {
+                  clientMutationId
+                }
+              }
+            `;
+            
+            await github.graphql(assignMutation);
+            core.info(`Issue #${issueNumber} assigned to Copilot (${copilotBot.login}) successfully`);
