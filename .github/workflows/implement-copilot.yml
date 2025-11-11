@@ -29,7 +29,9 @@ jobs:
         run: |
           echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
           echo "ISSUE_TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
-          # slugify title (quita espacios y símbolos)
+          # Guardar body (escapando saltos de línea)
+          BODY=$(echo "${{ github.event.issue.body }}" | sed 's/"/\\"/g' | tr '\n' ' ')
+          echo "ISSUE_BODY=${BODY}" >> $GITHUB_ENV
           SAFE_TITLE=$(echo "${{ github.event.issue.title }}" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-')
           echo "BRANCH_NAME=issue-${{ github.event.issue.number }}-${SAFE_TITLE}" >> $GITHUB_ENV
 
