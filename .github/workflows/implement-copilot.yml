@@ -74,7 +74,7 @@ jobs:
             const headBranch = process.env.BRANCH_NAME;
             const base = 'develop';
 
-            // comprobar si ya hay un PR abierto para este head -> base
+            // Comprobar si ya hay un PR abierto para este head -> base
             const list = await github.rest.pulls.list({
               owner,
               repo,
