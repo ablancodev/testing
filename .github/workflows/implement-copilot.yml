@@ -33,16 +33,16 @@ jobs:
           BODY=$(echo "${{ github.event.issue.body }}" | sed 's/"/\\"/g' | tr '\n' ' ')
           echo "ISSUE_BODY=${BODY}" >> $GITHUB_ENV
           SAFE_TITLE=$(echo "${{ github.event.issue.title }}" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-')
-          echo "BRANCH_NAME=issue-${{ github.event.issue.number }}-${SAFE_TITLE}" >> $GITHUB_ENV
+          BRANCH_NAME="issue-${{ github.event.issue.number }}-$SAFE_TITLE"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Create new branch from develop and commit placeholder
         run: |
           git fetch --all
-          # Intenta crear la rama desde origin/develop; si no existe, intenta develop local
+          # Intenta crear la rama desde origin/develop; si no existe, fallback a HEAD
           if git ls-remote --exit-code --heads origin develop; then
             git checkout -b "${{ env.BRANCH_NAME }}" origin/develop
           else
-            # fallback: si no existe develop remoto, crea desde HEAD
             git checkout -b "${{ env.BRANCH_NAME }}"
           fi
           echo "Auto branch for issue #${{ env.ISSUE_NUMBER }}" > ".github/ISSUE-${{ env.ISSUE_NUMBER }}.md"
@@ -61,6 +61,11 @@ jobs:
 
       - name: Create PR via GitHub API (avoid duplicates)
         uses: actions/github-script@v6
+        env:
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+          ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
+          ISSUE_TITLE: ${{ env.ISSUE_TITLE }}
+          ISSUE_BODY: ${{ env.ISSUE_BODY }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
