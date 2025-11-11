@@ -1,0 +1,52 @@
+name: Auto create branch and PR for implement issues
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  create-branch-and-pr:
+    # Ejecutar solo si el label aplicado es "implement"
+    if: github.event.label.name == 'implement'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write        # para crear rama y hacer commits
+      pull-requests: write   # para abrir PR
+      issues: read           # para leer la issue
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get issue info
+        id: issue
+        run: |
+          echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
+          echo "ISSUE_TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
+          # slugify title (quita espacios y símbolos)
+          SAFE_TITLE=$(echo "${{ github.event.issue.title }}" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-')
+          echo "BRANCH_NAME=issue-${{ github.event.issue.number }}-${SAFE_TITLE}" >> $GITHUB_ENV
+
+      - name: Create new branch
+        run: |
+          git fetch origin
+          git checkout -b "${{ env.BRANCH_NAME }}" origin/develop
+          # Opcional: crear un README temporal o placeholder para visibilidad
+          echo "Auto branch for issue #${{ env.ISSUE_NUMBER }}" > ".github/ISSUE-${{ env.ISSUE_NUMBER }}.md"
+          git add .
+          git commit -m "chore: create branch for issue #${{ env.ISSUE_NUMBER }}"
+          git push origin "${{ env.BRANCH_NAME }}"
+
+      - name: Create Pull Request into develop
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ env.BRANCH_NAME }}
+          base: develop
+          title: "Auto PR: Issue #${{ env.ISSUE_NUMBER }} - ${{ env.ISSUE_TITLE }}"
+          body: |
+            This PR was automatically generated from issue #${{ env.ISSUE_NUMBER }}.
+            Label: `implement`
+            Please commit your implementation changes to branch `${{ env.BRANCH_NAME }}`.
+          draft: true
