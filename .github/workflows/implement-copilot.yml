@@ -7,8 +7,6 @@ on:
 
 jobs:
   create-branch-and-pr:
-    # Solo corre si el issue tiene el label "implement"
-    if: contains(github.event.issue.labels.*.name, 'implement')
     runs-on: ubuntu-latest
 
     permissions:
